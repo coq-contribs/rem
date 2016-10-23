@@ -60,7 +60,7 @@ Definition closure (X : Top) (f : B) :=
   forall n : nat, exists g : B, X g /\ neighbour f n g.
 
 Lemma refl_neighbour : forall (n : nat) (x : B), neighbour x n x.
-unfold neighbour in |- *; auto with v62.
+unfold neighbour in |- *; auto.
 Qed.
 Hint Resolve refl_neighbour.
 
@@ -69,8 +69,8 @@ Lemma trans_neighbour :
  neighbour f n g -> neighbour g n h -> neighbour f n h.
 unfold neighbour in |- *.
 intros.
-rewrite (H m); trivial with v62.
-apply H0; trivial with v62.
+rewrite (H m); trivial.
+apply H0; trivial.
 Qed.
 
 Lemma closedc_clX : forall X : Top, closed (closure X).
@@ -87,15 +87,15 @@ unfold not in |- *; intro H2.
 apply H1.
 elim (H2 n).
 simple induction 1; intros.
-exists x; split; trivial with v62.
-apply trans_neighbour with g; trivial with v62.
+exists x; split; trivial.
+apply trans_neighbour with g; trivial.
 Qed.
 Hint Resolve closedc_clX.
 
 Lemma Xinc_clX : forall X : Top, inclusion X (closure X).
 unfold inclusion in |- *; intros X f Xf.
 unfold closure in |- *; intro n.
-exists f; split; trivial with v62.
+exists f; split; trivial.
 Qed.
 
 Lemma Lemma1 :
@@ -104,11 +104,11 @@ Lemma Lemma1 :
 unfold equal, inclusion in |- *; intro X; split.
 unfold inter, union, closure in |- *; intros.
 split.
-intro n; exists z; split; auto with v62.
-left; trivial with v62.
+intro n; exists z; split; auto.
+left; trivial.
 unfold inter, union, closure in |- *; intros.
 elim H; intros.
-elim H1; trivial with v62.
+elim H1; trivial.
 unfold complement in |- *; intros.
 elim (H2 H0).
 Qed.
@@ -120,14 +120,14 @@ intro clXf.
 elim (clXf n).
 simple induction 1.
 intros; exists x.
-split; trivial with v62.
+split; trivial.
 unfold union in |- *.
-left; trivial with v62.
+left; trivial.
 intro notclXf. 
 exists f; intros.
-split; trivial with v62.
+split; trivial.
 unfold union in |- *.
-right; trivial with v62.
+right; trivial.
 Qed.
 Hint Resolve density.
 
@@ -136,8 +136,8 @@ Theorem Rem :
  exists Y : Top, (exists Z : Top, closed Y /\ dense Z /\ equal X (inter Y Z)).
 intro X; exists (closure X).
 exists (union X (complement (closure X))).
-split; auto with v62.
-split; auto with v62.
+split; auto.
+split; auto.
 apply Lemma1.
 Qed.
 Require Import Lt.
@@ -160,7 +160,7 @@ unfold neighbour in OhSnz.
 unfold nbh in Ofng; unfold neighbour in Ofng.
 generalize (Ofng m lemn).
 intro E; rewrite E.
-auto with v62.
+auto.
 unfold closed, nbh in |- *.
 unfold open, complement, neighbour in |- *.
 intro g.
@@ -173,7 +173,7 @@ unfold not in |- *; intros fhn.
 apply notgfn.
 intros p psn.
 rewrite (fhn p psn).
-rewrite (hgn p psn); trivial with v62.
+rewrite (hgn p psn); trivial.
 Qed.
 
 
